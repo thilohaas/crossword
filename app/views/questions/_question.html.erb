@@ -6,7 +6,8 @@
         </ul>
     </td>
     <td>
-        <%= form_for([question, question.answers.build]) do |f| %>
+        <% debugger %>
+        <%= form_for([question.topic, question, question.answers.build]) do |f| %>
           <div class="field">
             <%= f.label :answer %><br />
             <%= f.text_field :answer %>

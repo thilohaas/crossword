@@ -48,6 +48,11 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    formtastic-bootstrap (2.0.0)
+      formtastic (~> 2.2)
+      formtastic-bootstrap
     hashie (2.0.3)
     hike (1.2.2)
     httpauth (0.2.0)
@@ -136,6 +141,8 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
+  formtastic
+  formtastic-bootstrap
   jquery-rails
   json
   oauth2

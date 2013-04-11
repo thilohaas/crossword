@@ -28,14 +28,13 @@
         </table>
 
         <div class="">
-            <%= form_for([@topic, @topic.questions.build]) do |f| %>
-              <div class="field">
-                <%= f.label :question %><br />
-                <%= f.text_field :question %>
-              </div>
-              <div class="actions">
-                <%= f.submit %>
-              </div>
+            <%= semantic_form_for([@topic, @topic.questions.build]) do |f| %>
+              <%= f.inputs do %>
+                <%= f.input :question %>
+              <% end %>
+              <%= f.actions do %>
+                <%= f.action :submit, :as => :button %>
+              <% end %>
             <% end %>
         </div>
     </div>

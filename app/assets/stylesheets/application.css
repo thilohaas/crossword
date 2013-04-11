@@ -28,3 +28,11 @@ body {
 .paddingTop {
     padding-top: 1em;
 }
+
+.hidden {
+    display: none;
+}
+
+.alert.alert-error > ul.error-list {
+  margin-bottom: 0px;
+}
