@@ -1,0 +1,49 @@
+<div class="row-fluid">
+    <div class="span12">
+        <p>
+          <b>Name:</b>
+          <%= @topic.name %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @topic.description %>
+        </p>
+    </div>
+</div>
+
+<div class="row-fluid paddingTop">
+    <div class="span12">
+        <table>
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Answers</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @topic.questions %>
+            </tbody>
+        </table>
+
+        <div class="">
+            <%= form_for([@topic, @topic.questions.build]) do |f| %>
+              <div class="field">
+                <%= f.label :question %><br />
+                <%= f.text_field :question %>
+              </div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <%= link_to 'Edit', edit_topic_path(@topic), :class => 'btn' %> |
+        <%= link_to 'Back', topics_path, :class => 'btn' %>
+    </div>
+</div>

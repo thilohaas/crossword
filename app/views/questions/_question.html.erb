@@ -1,0 +1,19 @@
+<tr>
+    <td><%= question.question %></td>
+    <td>
+        <ul>
+            <%= render question.answers %>
+        </ul>
+    </td>
+    <td>
+        <%= form_for([question, question.answers.build]) do |f| %>
+          <div class="field">
+            <%= f.label :answer %><br />
+            <%= f.text_field :answer %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+    </td>
+</tr>

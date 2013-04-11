@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cross</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container-narrow">
+    <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="#">Home</a></li>
+            <% if user_signed_in? %>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                </li>
+            <% else %>
+            <% end %>
+        </ul>
+        <h3 class="muted">crosswords</h3>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid messages">
+        <% if notice %>
+            <div class="alert alert-info alert-block">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= notice %>
+            </div>
+        <% end %>
+        <% if alert %>
+            <div class="alert alert-block">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= alert %>
+            </div>
+        <% end %>
+    </div>
+
+    <%= yield %>
+
+    <hr>
+
+    <div class="footer">
+        <p>&copy; Company 2013</p>
+    </div>
+
+</div>
+
+</body>
+</html>
