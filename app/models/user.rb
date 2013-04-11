@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   attr_accessible :nick
 
   has_many :authentications, :dependent => :delete_all
+  has_many :questions, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
 
   def apply_omniauth(auth)
     # In previous omniauth, 'user_info' was used in place of 'raw_info'
