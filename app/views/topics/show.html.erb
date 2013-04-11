@@ -3,7 +3,7 @@
       <h1><%= @topic.name %></h1>
 
         <p>
-          <%= @topic.description %>
+          <%= sanitize(@topic.description.gsub(/\n/, '<br />'), :tags => %w(br)) %>
         </p>
     </div>
 </div>
