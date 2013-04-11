@@ -1,3 +1,6 @@
 <li>
     <%= answer.answer %>
+    <%= link_to [answer.question.topic, answer.question, answer], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => '' do %>
+      <i class="icon-remove"></i>
+    <% end %>
 </li>

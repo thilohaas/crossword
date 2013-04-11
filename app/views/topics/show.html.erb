@@ -1,12 +1,8 @@
 <div class="row-fluid">
     <div class="span12">
-        <p>
-          <b>Name:</b>
-          <%= @topic.name %>
-        </p>
+      <h1><%= @topic.name %></h1>
 
         <p>
-          <b>Description:</b>
           <%= @topic.description %>
         </p>
     </div>
@@ -14,12 +10,13 @@
 
 <div class="row-fluid paddingTop">
     <div class="span12">
-        <table>
+        <h2>Questions</h2>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Question</th>
                     <th>Answers</th>
-                    <th>#</th>
+                    <th>Add an Answer</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,13 +24,15 @@
             </tbody>
         </table>
 
-        <div class="">
-            <%= semantic_form_for([@topic, @topic.questions.build]) do |f| %>
+        <div class="topic-question-form">
+          <h2>Add a Question</h2>
+            <%= semantic_form_for([@topic, @topic.questions.build], :html => { :class => "form-horizontal" }) do |f| %>
               <%= f.inputs do %>
-                <%= f.input :question %>
+                <%= f.input :question, :input_html => { :class => 'input-xlarge' } %>
+                <%= f.input :description, :input_html => { :class => 'input-xlarge', :rows => '5' } %>
               <% end %>
               <%= f.actions do %>
-                <%= f.action :submit, :as => :button %>
+                <%= f.action :submit, :as => :button, :button_html => { :class => 'btn btn-success' } %>
               <% end %>
             <% end %>
         </div>
@@ -42,7 +41,11 @@
 
 <div class="row-fluid">
     <div class="span12">
-        <%= link_to 'Edit', edit_topic_path(@topic), :class => 'btn' %> |
-        <%= link_to 'Back', topics_path, :class => 'btn' %>
+        <%= link_to edit_topic_path(@topic), :class => 'btn btn-info' do %>
+          <i class="icon-edit icon-white"></i> Edit Topic
+        <% end %>
+        <%= link_to topics_path, :class => 'btn btn-info' do %>
+          <i class="icon-home icon-white"></i> Back
+        <% end %>
     </div>
 </div>

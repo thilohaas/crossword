@@ -24,7 +24,9 @@
 
     <div class="row-fluid paddingTop">
         <div class="span12">
-            <%= link_to 'Add a New Topic', new_topic_path, :class => 'btn btn-success' %>
+            <%= link_to new_topic_path, :class => 'btn btn-success' do %>
+                <i class="icon-edit icon-white"></i> Add a New Topic
+            <% end %>
         </div>
     </div>
 

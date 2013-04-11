@@ -30,4 +30,21 @@ class QuestionsController < ApplicationController
     @question = @topic.questions.create(params[:question])
     redirect_to topic_path(@topic)
   end
+
+  def destroy
+    if !user_signed_in?
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.json { head :no_content }
+      end
+      return
+    end
+    @question = Question.find(params[:id])
+    @question.destroy
+
+    respond_to do |format|
+      format.html { redirect_to topic_url(@question.topic.id) }
+      format.json { head :no_content }
+    end
+  end
 end

@@ -36,3 +36,28 @@ body {
 .alert.alert-error > ul.error-list {
   margin-bottom: 0px;
 }
+
+.question-answer-form .form-inline .control-group,
+.question-answer-form .form-inline fieldset,
+.question-answer-form .form-inline .controls {
+    display: inline-block;
+}
+
+.question-answer-form .form-inline .form-actions {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.question-answer-form .form-inline label {
+    display: none;
+}
+
+.topic-question-form  .form-horizontal .form-actions {
+    padding-top: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+}

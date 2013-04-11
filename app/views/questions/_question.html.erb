@@ -1,20 +1,28 @@
-<tr>
-    <td><%= question.question %></td>
+<tr class="question">
     <td>
+        <p>
+            <%= question.question %>
+        </p>
+        <small>
+            <%= question.description %>
+        </small>
+    </td>
+    <td class="question-answers">
         <ul>
             <%= render question.answers %>
         </ul>
     </td>
-    <td>
-        <% debugger %>
-        <%= form_for([question.topic, question, question.answers.build]) do |f| %>
-          <div class="field">
-            <%= f.label :answer %><br />
-            <%= f.text_field :answer %>
-          </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
+    <td class="question-answer-form">
+        <%= semantic_form_for ([question.topic, question, question.answers.build], :html => { :class => "form-inline" }) do |f| %>
+          <%= f.inputs do %>
+            <%= f.input :answer, :input_html => { :class => 'input-medium' } %>
+          <% end %>
+          <%= f.actions do %>
+            <%= f.action :submit, :as => :button, :button_html => { :class => 'btn btn-success btn-small' } %>
+          <% end %>
+        <% end %>
+        <%= link_to [question.topic, question], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-small' do %>
+          <i class="icon-remove"></i> Delete Question
         <% end %>
     </td>
 </tr>
