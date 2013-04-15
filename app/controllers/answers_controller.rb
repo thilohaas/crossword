@@ -2,6 +2,10 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(params[:answer])
+
+    @answer.user.calculateScore
+    @answer.user.save
+
     redirect_to topic_question_path(@question.topic, @question)
   end
 
@@ -15,6 +19,9 @@ class AnswersController < ApplicationController
     end
     @answer = Answer.find(params[:id])
     @answer.destroy
+
+    @answer.user.calculateScore
+    @answer.user.save
 
     respond_to do |format|
       format.html { redirect_to topic_url(@answer.question.topic.id) }

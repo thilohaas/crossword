@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /admin/user
   # GET /admin/user.json
   def index
-    @users = User.all
+    @users = User.order('score').all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +14,11 @@ class UsersController < ApplicationController
   # GET /admin/users/1.json
   def show
     @user = User.find(params[:id])
+
+    if @user.score != @user.calculateScore
+      @user.save
+    end
+
 
     respond_to do |format|
       format.html # show.html.erb

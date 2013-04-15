@@ -1,21 +1,24 @@
 <h1>Listing users</h1>
 
-<table>
-  <tr>
-    <th>Nick</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.nick %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Score</th>
+      <th>Nick</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% rank = 0 %>
+  <% @users.each do |user| %>
+    <% rank = rank + 1 %>
+    <tr>
+      <td><%= rank %></td>
+      <td><%= user.score %></td>
+      <td><%= link_to user.nick, user %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
 <br />

@@ -19,7 +19,6 @@ module RatingsHelper
       @average = 0.0
     end
 
-    # Assuming the '_form' partial is in a directory 'app/views/ratings'
     render :partial => "ratings/average", :locals => {:average => @average}
   end
 end

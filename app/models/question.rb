@@ -3,4 +3,13 @@ class Question < ActiveRecord::Base
   has_many :answers, :dependent => :destroy
   belongs_to :topic
   belongs_to :user
+
+  def averageRating
+    average = Rating.where('rating_type = ? AND type_id = ?', 'question', self.id).average("value")
+
+    if !average
+      average = 0.0
+    end
+    return average
+  end
 end

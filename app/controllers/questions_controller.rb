@@ -28,6 +28,10 @@ class QuestionsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @question = @topic.questions.create(params[:question])
+
+    @question.user.calculateScore
+    @question.user.save
+
     redirect_to topic_path(@topic)
   end
 
@@ -41,6 +45,9 @@ class QuestionsController < ApplicationController
     end
     @question = Question.find(params[:id])
     @question.destroy
+
+    @question.user.calculateScore
+    @question.user.save
 
     respond_to do |format|
       format.html { redirect_to topic_url(@question.topic.id) }

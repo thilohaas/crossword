@@ -1,10 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+    <div class="span12">
+      <h1><%= @user.nick %></h1>
 
-<p>
-  <b>Nick:</b>
-  <%= @user.nick %>
-</p>
+        <p>
+            <strong>Score:</strong> <%= @user.score %><br />
+            <strong>Score from Questions:</strong> <%= @user.questionScore %><br />
+            <strong>Score from Answers:</strong> <%= @user.answerScore %><br />
+        </p>
 
+        <h2>Questions</h2>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Question</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @user.questions.each do |q| %>
+                <tr>
+                    <td>
+                        <%= link_to q.topic.name, q.topic, :class => '' %>
+                    </td>
+                    <td>
+                        <%= q.question %>
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+        <h2>Answers</h2>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @user.answers.each do |a| %>
+                <tr>
+                    <td>
+                        <%= link_to a.question.topic.name, a.question.topic, :class => '' %>
+                    </td>
+                    <td>
+                        <%= a.question.question %>
+                    </td>
+                    <td>
+                        <%= a.answer %>
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+

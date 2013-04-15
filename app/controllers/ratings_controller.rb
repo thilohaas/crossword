@@ -42,6 +42,18 @@ class RatingsController < ApplicationController
 
     respond_to do |format|
       if @rating.save
+
+        if @rating.rating_type == 'question'
+          @question = Question.find(@rating.type_id)
+          @question.user.calculateScore
+          @question.user.save
+        end
+        if @rating.rating_type == 'answer'
+          @answer = Answer.find(@rating.type_id)
+          @answer.user.calculateScore
+          @answer.user.save
+        end
+
         format.html { redirect_to :back, :notice => 'Rating was successfully created.' }
         format.json { render :json => @rating, :status => :created, :location => @rating }
       else
@@ -63,6 +75,17 @@ class RatingsController < ApplicationController
 
     respond_to do |format|
       if @rating.update_attributes(params[:rating])
+        if @rating.rating_type == 'question'
+          @question = Question.find(@rating.type_id)
+          @question.user.calculateScore
+          @question.user.save
+        end
+        if @rating.rating_type == 'answer'
+          @answer = Answer.find(@rating.type_id)
+          @answer.user.calculateScore
+          @answer.user.save
+        end
+
         format.html { redirect_to :back, :notice => 'Rating was successfully updated.' }
         format.json { head :no_content }
       else
