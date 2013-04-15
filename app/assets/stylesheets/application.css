@@ -82,6 +82,7 @@ body {
 }
 .rating-form .control-group .controls {
     display:     inline-block;
+    vertical-align: bottom;
 }
 .rating-form .control-group .controls div {
     display: inline-block;
@@ -89,12 +90,13 @@ body {
 
 .rating-form .control-group .controls label {
     float:       left;
-    width:       10px;
-    height:      10px;
+    width:       20px;
+    height:      20px;
     min-height:  auto;
     padding-top: 0;
     padding-left: 0;
-    padding-right: 10px;
+    padding-right: 0;
+    margin-bottom: 0;
 }
 
 .rating-form .control-group .controls input {
