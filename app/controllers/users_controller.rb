@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /admin/user
   # GET /admin/user.json
   def index
-    @users = User.order('score').all
+    @users = User.order('score DESC').all
 
     respond_to do |format|
       format.html # index.html.erb
