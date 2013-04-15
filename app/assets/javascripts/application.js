@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+(function ($, jQuery, undefined) {
+    $(document).ready(function(){
+        $('.rating-form').rating();
+    });
+})(jQuery, jQuery);

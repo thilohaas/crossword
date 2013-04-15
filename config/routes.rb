@@ -11,6 +11,7 @@ Cross::Application.routes.draw do
   get "home/index"
 
   resources :users
+  resources :ratings
 
 
   # The priority is based upon order of creation:

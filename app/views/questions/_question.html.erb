@@ -2,33 +2,35 @@
     <td>
         <p>
             <%= question.question %>
-            <% if question.user %>
-                <%= link_to user_path(question.user), :class => 'label label-info' do %>
-                    <%= question.user.nick %>
-                <% end %>
-            <% end %>
-        </p>
+            <%# if question.user %>
+                <%#= link_to user_path(question.user), :class => 'label label-info' do %>
+                    <%#= question.user.nick %>
+                <%# end %>
+            <%# end %>
         <small>
             <%= question.description %>
         </small>
+        </p>
+        <%= ratings_block("question", question.id, current_user.id) %>
+        <%= ratings_average_block("question", question.id) %>
     </td>
     <td class="question-answers">
         <ul>
             <%= render question.answers %>
         </ul>
-    </td>
-    <td class="question-answer-form">
-        <%= semantic_form_for ([question.topic, question, question.answers.build], :html => { :class => "form-inline" }) do |f| %>
-          <%= f.inputs do %>
-            <%= f.input :answer, :input_html => { :class => 'input-medium' } %>
-            <%= f.input :user_id, :as => :hidden, :value => current_user.id %>
-          <% end %>
-          <%= f.actions do %>
-            <%= f.action :submit, :as => :button, :button_html => { :class => 'btn btn-success btn-small' } %>
-          <% end %>
-        <% end %>
-        <%= link_to [question.topic, question], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-small' do %>
-          <i class="icon-remove"></i> Delete Question
-        <% end %>
+            <div class="question-answer-form">
+                <%= semantic_form_for ([question.topic, question, question.answers.build], :html => { :class => "form-inline", :id => "answer-form-#{question.id}" }, :namespace => "answer-form-#{question.id}") do |f| %>
+                  <%= f.inputs do %>
+                    <%= f.input :answer, :input_html => { :class => 'input-medium' } %>
+                    <%= f.input :user_id, :as => :hidden, :value => current_user.id %>
+                  <% end %>
+                  <%= f.actions do %>
+                    <%= f.action :submit, :as => :button, :button_html => { :class => 'btn btn-success btn-small' } %>
+                  <% end %>
+                <% end %>
+                <%= link_to [question.topic, question], :method => :delete, :data => { :confirm => 'Do you really want to delete this question?' }, :class => 'btn btn-small pull-right' do %>
+                  <i class="icon-remove"></i> Delete Question
+                <% end %>
+            </div>
     </td>
 </tr>

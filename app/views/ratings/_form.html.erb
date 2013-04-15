@@ -1,0 +1,13 @@
+<div class="rating-form">
+<%= semantic_form_for(@rating, :namespace => "rating-#{@rating.rating_type}-#{@rating.type_id}") do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :value, :as => :radio, :collection => [["☆", 1], ["☆", 2], ["☆", 3], ["☆", 4], ["☆", 5]], :input_html => { :class => 'rating-options' } %>
+    <%= f.input :rating_type, :as => :hidden %>
+    <%= f.input :type_id, :as => :hidden %>
+    <%= f.input :user_id, :as => :hidden %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :button, :button_html => { :class => 'btn btn-success' } %>
+  <% end %>
+<% end %>
+</div>

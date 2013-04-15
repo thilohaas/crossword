@@ -61,3 +61,54 @@ body {
     background-color: transparent;
     border: none;
 }
+
+.rating-form {
+    display: inline-block;
+}
+
+.rating-form form {
+    margin:  0;
+    display: inline-block;
+}
+
+.rating-form .control-group {
+    display:       inline-block;
+    margin-right:  0;
+    margin-bottom: 0;
+}
+.rating-form .control-group > label,
+.rating-form .control-group.hidden {
+    display: none;
+}
+.rating-form .control-group .controls {
+    display:     inline-block;
+}
+.rating-form .control-group .controls div {
+    display: inline-block;
+}
+
+.rating-form .control-group .controls label {
+    float:       left;
+    width:       10px;
+    height:      10px;
+    min-height:  auto;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.rating-form .control-group .controls input {
+    color:   transparent;
+    display: none;
+}
+
+.rating-form .form-actions {
+    display: none;
+}
+.rating-form .control-group .hidden {
+    display: none;
+}
+
+form.answer {
+    margin: 0;
+}

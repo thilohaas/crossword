@@ -1,6 +1,7 @@
 <li>
     <%= answer.answer %>
-    <%= link_to [answer.question.topic, answer.question, answer], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => '' do %>
+    <%= ratings_block("answer", answer.id, current_user.id) %>
+    <%= link_to [answer.question.topic, answer.question, answer], :method => :delete, :data => { :confirm => 'Do you really want to delete this answer?' }, :class => 'answer-delete pull-right' do %>
       <i class="icon-remove"></i>
     <% end %>
 </li>
