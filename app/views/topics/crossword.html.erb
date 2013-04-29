@@ -1,0 +1,89 @@
+<div class="row-fluid">
+    <div class="span12">
+      <h1><%= @topic.name %></h1>
+
+        <p>
+          <%= sanitize(@topic.description.gsub(/\n/, '<br />'), :tags => %w(br)) %>
+        </p>
+    </div>
+</div>
+
+<div class="row-fluid paddingTop">
+    <div id="crossword"></div>
+    <table id="clues">
+        <thead>
+            <tr>
+                <th>Across</th>
+                <th>Down</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><ul id="across"></ul></td>
+                <td><ul id="down"></ul></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <%= link_to topic_path(@topic), :class => 'btn btn-info' do %>
+          <i class="icon-folder-close icon-white"></i> Back to topic
+        <% end %>
+        <%= link_to topics_path, :class => 'btn btn-info' do %>
+          <i class="icon-home icon-white"></i> Home
+        <% end %>
+    </div>
+</div>
+
+<script type="text/javascript">
+window.onload = function(){
+
+    var words = [];
+    var clues = [];
+    <% @topic.questions.each do |q| %>
+      <% if q.answers.exists? %>
+        clues.push("<%= q.question %>");
+        words.push("<%= q.answers.first.getUCAnswer %>");
+      <% end %>
+    <% end %>
+
+    // Create crossword object with the words and clues
+    var cw = new Crossword(words, clues);
+
+    // create the crossword grid (try to make it have a 1:1 width to height ratio in 10 tries)
+    var tries = 10;
+    var grid = cw.getSquareGrid(tries);
+
+    // report a problem with the words in the crossword
+    if(grid == null){
+        var bad_words = cw.getBadWords();
+        var str = [];
+        for(var i = 0; i < bad_words.length; i++){
+            str.push(bad_words[i].word);
+        }
+        //alert("Shoot! A grid could not be created with these words:\n" + str.join("\n"));
+        return;
+    }
+
+    // turn the crossword grid into HTML
+    var show_answers = true;
+    CrosswordUtils.PATH_TO_PNGS_OF_NUMBERS = '/assets/numbers/';
+    document.getElementById("crossword").innerHTML = CrosswordUtils.toHtml(grid, show_answers);
+
+    // make a nice legend for the clues
+    var legend = cw.getLegend(grid);
+    addLegendToPage(legend);
+};
+
+function addLegendToPage(groups){
+    for(var k in groups){
+        var html = [];
+        for(var i = 0; i < groups[k].length; i++){
+            html.push("<li><strong>" + groups[k][i]['position'] + ".</strong> " + groups[k][i]['clue'] + "</li>");
+        }
+        document.getElementById(k).innerHTML = html.join("\n");
+    }
+}
+</script>

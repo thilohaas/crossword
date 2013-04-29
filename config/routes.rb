@@ -1,5 +1,8 @@
 Cross::Application.routes.draw do
   resources :topics do
+    member do
+      get 'crossword'
+    end
     resources :questions do
       resources :answers
     end

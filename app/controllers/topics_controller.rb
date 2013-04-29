@@ -27,6 +27,25 @@ class TopicsController < ApplicationController
     end
   end
 
+  # GET /topics/1/crossword
+  # GET /topics/1/crossword.json
+  def crossword
+    if !user_signed_in?
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.json { head :no_content }
+      end
+      return
+    end
+
+    @topic = Topic.find(params[:id])
+
+    respond_to do |format|
+      format.html # crossword.html.erb
+      format.json { render :json => @topic }
+    end
+  end
+
   # GET /topics/new
   # GET /topics/new.json
   def new
