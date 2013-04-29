@@ -9,6 +9,10 @@ class Answer < ActiveRecord::Base
      self.answer.upcase! if self.answer
   end
 
+  def getUCAnswer
+    return self.answer.upcase
+  end
+
   def averageRating
     average = Rating.where('rating_type = ? AND type_id = ?', 'answer', self.id).average("value")
 
