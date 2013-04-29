@@ -114,3 +114,7 @@ body {
 form.answer {
     margin: 0;
 }
+
+.topiclist a {
+    margin-bottom: 10px;
+}
