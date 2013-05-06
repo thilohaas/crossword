@@ -160,3 +160,7 @@ form.answer {
 #clues td {
     vertical-align:top;
 }
+
+.topic-question-form-answer legend {
+    display: none;
+}

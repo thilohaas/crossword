@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to topic_url(@question.topic.id) }
+      format.html { redirect_to topic_url(@question.topic.id, :anchor => "question-#{@question.id}") }
       format.json { head :no_content }
     end
   end
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
     @question.user.calculateScore
     @question.user.save
 
-    redirect_to topic_path(@topic)
+    redirect_to topic_path(@topic, :anchor => "question-#{@question.id}")
   end
 
   def destroy
