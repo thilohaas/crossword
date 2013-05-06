@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
 
+  accepts_nested_attributes_for :answers
+
   def averageRating
     average = Rating.where('rating_type = ? AND type_id = ?', 'question', self.id).average("value")
 

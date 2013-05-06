@@ -19,7 +19,7 @@
             <%= render question.answers %>
         </ul>
             <div class="question-answer-form">
-                <%= semantic_form_for ([question.topic, question, question.answers.build], :html => { :class => "form-inline", :id => "answer-form-#{question.id}" }, :namespace => "answer-form-#{question.id}") do |f| %>
+                <%= semantic_form_for([question.topic, question, question.answers.build], :html => { :class => "form-inline", :id => "answer-form-#{question.id}" }, :namespace => "answer-form-#{question.id}" ) do |f| %>
                   <%= f.inputs do %>
                     <%= f.input :answer, :input_html => { :class => 'input-medium' } %>
                     <%= f.input :user_id, :as => :hidden, :value => current_user.id %>
