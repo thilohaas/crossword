@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   # GET /
   # GET /.json
   def index
-    @topics = Topic.all
+    @topics = Topic.find(:all, :order => 'name')
 
     respond_to do |format|
       format.html # index.html.erb
