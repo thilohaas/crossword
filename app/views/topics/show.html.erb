@@ -30,7 +30,6 @@
             <%= semantic_form_for([@topic, @topic.questions.build], :html => { :class => "form-horizontal" }) do |f| %>
               <%= f.inputs do %>
                 <%= f.input :question, :input_html => { :class => 'input-xlarge' } %>
-                <%= f.input :description, :input_html => { :class => 'input-xlarge', :rows => '5' } %>
                 <%= f.input :user_id, :as => :hidden, :value => current_user.id %>
               <% end %>
               <%= f.actions do %>
