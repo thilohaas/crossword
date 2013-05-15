@@ -137,6 +137,14 @@ form.answer {
     margin-top:10px;
     margin-bottom:10px;
 }
+.crossword td {
+    position: relative;
+}
+.crossword .number {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
 
 .crossword td {
     border:1px solid black;

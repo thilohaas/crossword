@@ -385,7 +385,7 @@ var CrosswordUtils = {
 
                 if(is_start_of_word) {
                     var img_url = CrosswordUtils.PATH_TO_PNGS_OF_NUMBERS + label + ".png";
-                    html.push("<td class='" + css_class + "' title='" + r + ", " + c + "' style=\"display: list-item; list-style-position: inside; list-style-image:url('" + img_url + "')\">");
+                    html.push("<td class='" + css_class + "' title='" + r + ", " + c + "' ><span class='number' style=\"display: list-item; list-style-position: inside; list-style-image:url('" + img_url + "')\"></span>");
                     label++;
                 } else {
                     html.push("<td class='" + css_class + "' title='" + r + ", " + c + "'>");
