@@ -54,7 +54,7 @@ window.onload = function(){
 
     var words = [];
     var clues = [];
-    <% @topic.questions.each do |q| %>
+    <% @topic.questions.order("RANDOM()").limit(20).each do |q| %>
       <% if q.answers.exists? %>
         clues.push("<%= q.question %>");
         words.push("<%= q.answers.first(:order => 'RANDOM()').getUCAnswer %>");
