@@ -164,3 +164,15 @@ form.answer {
 .topic-question-form-answer legend {
     display: none;
 }
+
+@media print {
+    #crossword td {
+        color: transparent !important;
+    }
+
+    .footer, .masthead, .btn {
+        display: none !important;
+    }
+
+
+}
