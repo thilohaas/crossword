@@ -2,7 +2,7 @@
 function CrosswordCell(letter){
     this.char = letter; // the actual letter for the cell on the crossword
     // If a word hits this cell going in the "across" direction, this will be a CrosswordCellNode
-    this.across = null; 
+    this.across = null;
     // If a word hits this cell going in the "down" direction, this will be a CrosswordCellNode
     this.down = null;
 }
@@ -23,9 +23,9 @@ function Crossword(words_in, clues_in){
     var GRID_ROWS = 50;
     var GRID_COLS = 50;
     // This is an index of the positions of the char in the crossword (so we know where we can potentially place words)
-    // example {"a" : [{'row' : 10, 'col' : 5}, {'row' : 62, 'col' :17}], {'row' : 54, 'col' : 12}], "b" : [{'row' : 3, 'col' : 13}]} 
+    // example {"a" : [{'row' : 10, 'col' : 5}, {'row' : 62, 'col' :17}], {'row' : 54, 'col' : 12}], "b" : [{'row' : 3, 'col' : 13}]}
     // where the two item arrays are the row and column of where the letter occurs
-    var char_index = {};	
+    var char_index = {};
 
     // these words are the words that can't be placed on the crossword
     var bad_words;
@@ -72,16 +72,16 @@ function Crossword(words_in, clues_in){
 
             // start with a group containing all the words (except the first)
             // as we go, we try to place each word in the group onto the grid
-            // if the word can't go on the grid, we add that word to the next group 
+            // if the word can't go on the grid, we add that word to the next group
             var groups = [];
             groups.push(word_elements.slice(1));
             for(var g = 0; g < groups.length; g++){
                 word_has_been_added_to_grid = false;
                 // try to add all the words in this group to the grid
                 for(var i = 0; i < groups[g].length; i++){
-                    var word_element = groups[g][i]; 
+                    var word_element = groups[g][i];
                     var best_position = findPositionForWord(word_element.word);
-                    if(!best_position){ 
+                    if(!best_position){
                         // make the new group (if needed)
                         if(groups.length - 1 == g) groups.push([]);
                         // place the word in the next group
@@ -89,14 +89,14 @@ function Crossword(words_in, clues_in){
                     } else {
                         var r = best_position["row"], c = best_position["col"], dir = best_position['direction'];
                         placeWordAt(word_element.word, word_element.index, r, c, dir);
-                        word_has_been_added_to_grid = true;						
+                        word_has_been_added_to_grid = true;
                     }
                 }
                 // if we haven't made any progress, there is no point in going on to the next group
                 if(!word_has_been_added_to_grid) break;
             }
             // no need to try again
-            if(word_has_been_added_to_grid) return minimizeGrid();  
+            if(word_has_been_added_to_grid) return minimizeGrid();
         }
 
         bad_words = groups[groups.length - 1];
@@ -115,7 +115,7 @@ function Crossword(words_in, clues_in){
     this.getLegend = function(grid){
         var groups = {"across" : [], "down" : []};
         var position = 1;
-        for(var r = 0; r < grid.length; r++){	
+        for(var r = 0; r < grid.length; r++){
             for(var c = 0; c < grid[r].length; c++){
                 var cell = grid[r][c];
                 var increment_position = false;
@@ -133,7 +133,7 @@ function Crossword(words_in, clues_in){
             }
         }
         return groups;
-    }	
+    }
 
     // move the grid onto the smallest grid that will fit it
     var minimizeGrid = function(){
@@ -151,8 +151,8 @@ function Crossword(words_in, clues_in){
             }
         }
         // initialize new grid
-        var rows = r_max - r_min + 1; 
-        var cols = c_max - c_min + 1; 
+        var rows = r_max - r_min + 1;
+        var cols = c_max - c_min + 1;
         var new_grid = new Array(rows);
         for(var r = 0; r < rows; r++){
             for(var c = 0; c < cols; c++){
@@ -186,7 +186,7 @@ function Crossword(words_in, clues_in){
         var is_start_of_word = index_of_char == 0;
         grid[r][c][direction] = new CrosswordCellNode(is_start_of_word, index_of_word_in_input_list);
 
-    }	
+    }
 
     // place the word at the row and col indicated (the first char goes there)
     // the next chars go to the right (across) or below (down), depending on the direction
@@ -198,9 +198,9 @@ function Crossword(words_in, clues_in){
         } else if(direction == "down"){
             for(var r = row, i = 0; r < row + word.length; r++, i++){
                 addCellToGrid(word, index_of_word_in_input_list, i, r, col, direction);
-            }			
+            }
         } else {
-            throw "Invalid Direction";	
+            throw "Invalid Direction";
         }
     }
 
@@ -293,7 +293,7 @@ function Crossword(words_in, clues_in){
                 intersections += result;
             }
         } else {
-            throw "Invalid Direction";	
+            throw "Invalid Direction";
         }
         return intersections;
     }
@@ -342,16 +342,16 @@ function Crossword(words_in, clues_in){
 
     // constructor
     if(words_in.length < 2) throw "A crossword must have at least 2 words";
-    if(words_in.length != clues_in.length) throw "The number of words must equal the number of clues";	
+    if(words_in.length != clues_in.length) throw "The number of words must equal the number of clues";
 
     // build the grid;
     var grid = new Array(GRID_ROWS);
     for(var i = 0; i < GRID_ROWS; i++){
-        grid[i] = new Array(GRID_COLS);	
+        grid[i] = new Array(GRID_COLS);
     }
 
     // build the element list (need to keep track of indexes in the originial input arrays)
-    var word_elements = [];	
+    var word_elements = [];
     for(var i = 0; i < words_in.length; i++){
         word_elements.push(new WordElement(words_in[i], i));
     }
@@ -385,16 +385,16 @@ var CrosswordUtils = {
 
                 if(is_start_of_word) {
                     var img_url = CrosswordUtils.PATH_TO_PNGS_OF_NUMBERS + label + ".png";
-                    html.push("<td class='" + css_class + "' title='" + r + ", " + c + "' style=\"background-image:url('" + img_url + "')\">");
-                    label++;			
+                    html.push("<td class='" + css_class + "' title='" + r + ", " + c + "' style=\"display: list-item; list-style-position: inside; list-style-image:url('" + img_url + "')\">");
+                    label++;
                 } else {
-                    html.push("<td class='" + css_class + "' title='" + r + ", " + c + "'>");					
+                    html.push("<td class='" + css_class + "' title='" + r + ", " + c + "'>");
                 }
 
                 if(show_answers) {
                     html.push(char);
                 } else {
-                    html.push("&nbsp;");								
+                    html.push("&nbsp;");
                 }
             }
             html.push("</tr>");
